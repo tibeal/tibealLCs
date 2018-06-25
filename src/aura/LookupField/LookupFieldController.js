@@ -195,8 +195,8 @@
             if (searchValue) {
                 lookupModal.set('v.searchValue', searchValue);
                 if (lookupModal.find('lookup-filter')) {
-                    if (lookupModal.find('lookup-filter').find('invoice-filter-input')) {
-                        lookupModal.find('lookup-filter').find('invoice-filter-input').setFieldValue(Object.prototype.valueOf.call(searchValue));
+                    if (lookupModal.find('lookup-filter').find('fielo-filter-input')) {
+                        lookupModal.find('lookup-filter').find('fielo-filter-input').setFieldValue(Object.prototype.valueOf.call(searchValue));
                     }
                 }    
             }

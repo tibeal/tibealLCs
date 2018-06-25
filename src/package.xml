@@ -9,6 +9,7 @@
     </types>
     <types>
         <members>FieldUpdate</members>
+        <members>FilterRecords</members>
         <members>InputField</members>
         <members>Filter</members>
         <members>LookupField</members>
