@@ -1,0 +1,49 @@
+<aura:component controller="FilterController">
+    
+    <aura:attribute type="Boolean" name="showFilter" default="false"/>
+    <aura:attribute type="String" name="objectName"/>
+    <aura:attribute type="String" name="filterFields"/>
+    <aura:attribute type="String" name="rangedFields"/>
+    <aura:attribute type="Object[]" name="fieldset"/>
+    <aura:attribute type="Object" name="fieldMap"/>
+    <aura:attribute type="Object" name="fieldTypes"/>
+    <aura:attribute type="Object" name="filterObject"/>
+    <aura:attribute type="Object" name="oldFilterObject"/>
+    <!-- DESIGN ATTRIBUTES -->
+    <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
+    
+    <!-- EVENTS -->
+    <aura:registerEvent name="filterMyInvoices" type="c:FilterMyInvoices"/>
+    
+    <aura:handler event="c:RegisterComponent" name="fieldRegister" action="{!c.registerComponent}"/>
+    <aura:handler event="c:FieldUpdate" name="fieldUpdate" action="{!c.updFilterObjectEvt}"/>
+    
+    <aura:if isTrue="{!v.showFilter}">
+        <div class="fielo-filter-container">
+            <lightning:layout verticalAlign="end" horizontalAlign="spread">
+                <aura:iteration items="{!v.fieldset}" var="field">
+                    <aura:if isTrue="{!or(field.attributes.isToField == true, field.attributes.isToField == 'true')}">
+                        <lightning:layoutItem>
+                            <div class="fielo-filter-to-container">
+                                <lightning:formattedText value="{!$Label.c.To}" />
+                            </div>
+                        </lightning:layoutItem>
+                        <lightning:layoutItem>
+                            <c:InputField aura:id="invoice-filter-input" fieldMeta="{!field}"/>
+                        </lightning:layoutItem>
+                        <aura:set attribute="else">
+                            <lightning:layoutItem>
+                                <c:InputField aura:id="invoice-filter-input" fieldMeta="{!field}"/>
+                            </lightning:layoutItem>    
+                        </aura:set>
+                    </aura:if>
+                </aura:iteration>
+                <lightning:layoutItem>
+                    <div class="filterBtn-container">
+                        <lightning:button label="{!$Label.c.Filter}" class="filterBtn" variant="brand" onclick="{!c.filter}" />
+                    </div>
+                </lightning:layoutItem>
+            </lightning:layout>
+        </div>
+    </aura:if>
+</aura:component>
