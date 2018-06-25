@@ -13,7 +13,7 @@
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     
     <!-- EVENTS -->
-    <aura:registerEvent name="filterMyInvoices" type="c:FilterMyInvoices"/>
+    <aura:registerEvent name="filterRecords" type="c:FilterRecords"/>
     
     <aura:handler event="c:RegisterComponent" name="fieldRegister" action="{!c.registerComponent}"/>
     <aura:handler event="c:FieldUpdate" name="fieldUpdate" action="{!c.updFilterObjectEvt}"/>

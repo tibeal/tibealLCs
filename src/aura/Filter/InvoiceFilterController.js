@@ -86,7 +86,7 @@
         event.stopPropagation();
         var fields = component.get('v.fieldset');
         var filterObject = component.get('v.filterObject');
-        var compEvent = component.getEvent("filterMyInvoices");
+        var compEvent = component.getEvent("filterRecords");
         var whereClause;
         if (filterObject) {
             whereClause = helper.assembleWhereClause(component, filterObject);
