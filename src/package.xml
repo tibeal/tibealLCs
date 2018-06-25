@@ -5,6 +5,8 @@
         <members>FilterControllerTest</members>
         <members>LookupController</members>
         <members>LookupSearchController</members>
+        <members>AuraService</members>
+        <members>AuraServiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
