@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>RangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>RangeSuffix</shortDescription>
+        <value>Range</value>
+    </labels>
+    <labels>
+        <fullName>CurrencyRangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>CurrencyRangeSuffix</shortDescription>
+        <value>Range ($)</value>
+    </labels>
+    <labels>
+        <fullName>DoubleRangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DoubleRangeSuffix</shortDescription>
+        <value>Range</value>
+    </labels>
+    <labels>
+        <fullName>PercentRangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>PercentRangeSuffix</shortDescription>
+        <value>% Range</value>
+    </labels>
+    <labels>
+        <fullName>DateRangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DateRangeSuffix</shortDescription>
+        <value>Range</value>
+    </labels>
+    <labels>
+        <fullName>DatetimeRangeSuffix</fullName>
+        <categories>InvoiceFilter.cmp</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>DatetimeRangeSuffix</shortDescription>
+        <value>Range</value>
+    </labels>
+</CustomLabels>
