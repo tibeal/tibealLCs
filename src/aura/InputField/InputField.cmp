@@ -1,5 +1,6 @@
 <aura:component >
     <aura:attribute type="Boolean" name="showLabel" default="true"/>
+    <aura:attribute type="Boolean" name="registered" default="false"/>
     <aura:attribute type="Object" name="fieldMeta"/>
     <aura:attribute type="String" name="stringValue"/>
     <aura:attribute type="Boolean" name="booleanValue"/>

@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
+		<members>AuraService</members>
+		<members>AuraServiceTest</members>
         <members>FilterController</members>
         <members>FilterControllerTest</members>
         <members>LookupController</members>
         <members>LookupSearchController</members>
-        <members>AuraService</members>
-        <members>AuraServiceTest</members>
         <name>ApexClass</name>
     </types>
     <types>
         <members>FieldUpdate</members>
+        <members>Filter</members>
         <members>FilterRecords</members>
         <members>InputField</members>
-        <members>Filter</members>
         <members>LookupField</members>
         <members>LookupFieldItem</members>
         <members>LookupSearch</members>

@@ -84,7 +84,7 @@
             if (fieldValue != null && fieldValue != '' && fieldValue != undefined) {
                 if (this.isQuoted[fieldTypes[fieldName]]) {
                     if (fieldTypes[fieldName] != 'string' && fieldTypes[fieldName] != 'textarea') {
-                    	whereClause = fieldName + ' ' + operator + ' \'\'' + fieldValue.replace(new RegExp('\'','g'),'\\\'\'') + '\'\'';    
+                        whereClause = fieldName + ' ' + operator + ' \'\'' + fieldValue.replace(new RegExp('\'','g'),'\\\'\'') + '\'\'';    
                     } else {
                         whereClause = fieldName + ' LIKE \'\'%' + fieldValue.replace(new RegExp('\'','g'),'\\\'\'') + '%\'\'';
                     }
@@ -93,6 +93,69 @@
                 }    
             }
             return whereClause;    
+        } catch(e) {
+            console.log(e);
+        }
+    },
+    assembleDynamicFilter: function(component, filterObject) {
+        try{
+            var filterWrapperList = [];
+            var filterWrapper = {};
+            var fieldTypes = component.get('v.fieldTypes');
+            var fieldMap = component.get('v.fieldMap');
+            var rangedFields = component.get('v.rangedFields').split(',');
+            [].forEach.call(Object.keys(filterObject), function(filterField) {
+                if (filterObject[filterField] != '' && filterObject[filterField] != null && filterObject[filterField] != undefined) {
+                    if (filterField.indexOf('-to') == -1) {
+                        if (rangedFields.indexOf(filterField) == -1) {
+                            filterWrapper = {};
+                            filterWrapper.field = filterField;
+                            filterWrapper.value = filterObject[filterField];
+                            if (fieldMap[filterField].attributes.type != 'id' && fieldMap[filterField].attributes.inputType == 'text') {
+                                filterWrapper.operator = 'like';
+                            } else {
+                                filterWrapper.operator = 'equals';
+                            }
+                            filterWrapperList.push(filterWrapper);
+                        } else {
+                            filterWrapper = {};
+                            filterWrapper.field = filterField;
+                            filterWrapper.value = filterObject[filterField];
+                            filterWrapper.operator = 'greater or equal';
+                            filterWrapperList.push(filterWrapper);
+                            
+                            if (filterObject[filterField + '-to']) {
+                                filterWrapper = {};
+                                filterWrapper.field = filterField;
+                                filterWrapper.value = filterObject[filterField + '-to'];
+                                filterWrapper.operator = 'less or equal';
+                                filterWrapperList.push(filterWrapper);
+                            }
+                        }
+                    } else if (filterField.indexOf('-to') != -1) {
+                        var fieldFrom = filterObject[filterField.replace('-to','')];
+                        if (fieldFrom == '' || fieldFrom == null || fieldFrom == undefined) {
+                            filterWrapper = {};
+                            filterWrapper.field = filterField.replace('-to','');
+                            filterWrapper.value = filterObject[filterField];
+                            filterWrapper.operator = 'less or equal';
+                            filterWrapperList.push(filterWrapper);
+                        }
+                    }
+                }
+            }, this);
+            for(var i = 0; i < filterWrapperList.length; i++) {
+                if (filterWrapperList.length != 1) {
+                    if (i > 0) {
+                    	filterWrapperList[i].andOrOperator = 'and';    
+                    }
+                }
+            }
+            if (filterWrapperList.length > 0) {
+            	return JSON.stringify(filterWrapperList);    
+            } else {
+                return '';
+            }
         } catch(e) {
             console.log(e);
         }

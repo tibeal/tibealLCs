@@ -41,6 +41,15 @@
     margin-right: 10px;
 }
 
+.THIS .slds-grid{
+    flex-wrap: wrap;
+}
+
+.THIS .sortBtn-container{
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
 .THIS .filterBtn-container{
     margin-bottom: 10px;
 }

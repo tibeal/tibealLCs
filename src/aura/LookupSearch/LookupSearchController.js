@@ -12,7 +12,7 @@
                 fieldset.push({
                     "apiName": "Name",
                     "type": "subcomponent",
-                    "subcomponent": "c:PickRecord",
+                    "subcomponent": "FieloELR:PickRecord",
                     "label": {
                         "type": "default"
                     },

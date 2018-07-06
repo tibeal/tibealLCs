@@ -1,14 +1,19 @@
 <aura:component controller="FilterController">
     
     <aura:attribute type="Boolean" name="showFilter" default="false"/>
+    <aura:attribute type="Boolean" name="showSortBy" default="false"/>
     <aura:attribute type="String" name="objectName"/>
     <aura:attribute type="String" name="filterFields"/>
     <aura:attribute type="String" name="rangedFields"/>
+    <aura:attribute type="String" name="sortByClause"/>
+    <aura:attribute type="Object[]" name="sortByOptions"/>
     <aura:attribute type="Object[]" name="fieldset"/>
     <aura:attribute type="Object" name="fieldMap"/>
     <aura:attribute type="Object" name="fieldTypes"/>
     <aura:attribute type="Object" name="filterObject"/>
     <aura:attribute type="Object" name="oldFilterObject"/>
+    <aura:attribute type="String" name="iconName" default="utility:arrowup"/>
+    <aura:attribute type="String" name="sortType" default="ASC"/>
     <!-- DESIGN ATTRIBUTES -->
     <aura:handler name="init" action="{!c.doInit}" value="{!this}"/>
     
@@ -20,7 +25,7 @@
     
     <aura:if isTrue="{!v.showFilter}">
         <div class="fielo-filter-container">
-            <lightning:layout verticalAlign="end" horizontalAlign="spread">
+            <lightning:layout verticalAlign="end" horizontalAlign="start">
                 <aura:iteration items="{!v.fieldset}" var="field">
                     <aura:if isTrue="{!or(field.attributes.isToField == true, field.attributes.isToField == 'true')}">
                         <lightning:layoutItem>
@@ -29,15 +34,29 @@
                             </div>
                         </lightning:layoutItem>
                         <lightning:layoutItem>
-                            <c:InputField aura:id="invoice-filter-input" fieldMeta="{!field}"/>
+                            <c:InputField aura:id="fielo-filter-input" fieldMeta="{!field}"/>
                         </lightning:layoutItem>
                         <aura:set attribute="else">
                             <lightning:layoutItem>
-                                <c:InputField aura:id="invoice-filter-input" fieldMeta="{!field}"/>
-                            </lightning:layoutItem>    
+                                <c:InputField aura:id="fielo-filter-input" fieldMeta="{!field}"/>
+                            </lightning:layoutItem>
                         </aura:set>
                     </aura:if>
                 </aura:iteration>
+                <aura:if isTrue="{!and(v.showSortBy, v.sortByOptions != null)}">
+                    <lightning:layoutItem>
+                        <lightning:select aura:id="fielo-filter-sort-by" name="sortByClause" label="{!$Label.c.SortBy}" title="{!$Label.c.SortByToolTip}">
+                            <aura:iteration items="{!v.sortByOptions}" var="picklistEntry">
+                                <option aura:id="sort-entry" value="{!picklistEntry.value}">{!picklistEntry.label}</option>
+                            </aura:iteration>
+                        </lightning:select>
+                    </lightning:layoutItem>
+                </aura:if>
+                <lightning:layoutItem>
+                    <div class="sortBtn-container">
+						<lightning:buttonIcon iconName="{!v.iconName}" class="sortBtn" variant="neutral" onclick="{! c.changeSort }" title="{!v.sortType}"/>
+                    </div>
+                </lightning:layoutItem>
                 <lightning:layoutItem>
                     <div class="filterBtn-container">
                         <lightning:button label="{!$Label.c.Filter}" class="filterBtn" variant="brand" onclick="{!c.filter}" />
