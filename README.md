@@ -1,4 +1,4 @@
-# Lightning Components By Tiago Leal (tibeal)
+# Lightning Components
 
 ##Deploy
 <br>
